@@ -1,0 +1,27 @@
+{
+  "name": "cakesandmore",
+  "description": "Cake Passion",
+  "scripts": {
+    "postdeploy": "python manage.py makemigrations",
+    "pr-predestroy": "npm start"
+  },
+  "env": {
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "papertrail",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
