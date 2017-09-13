@@ -1,1 +1,1 @@
-# coding=utf-8
+from settings.pipelines.environments.development import *
