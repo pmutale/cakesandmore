@@ -2,6 +2,8 @@ from settings.pipelines.environments.base import *
 
 DEBUG = False
 
+ALLOWED_HOSTS = ['cakesandmore-dev.herokuapp.com'] 
+
 DATABASES = {
     'default': {
         'CONN_MAX_AGE': 0,
