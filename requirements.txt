@@ -23,3 +23,5 @@ pytz==2017.2
 six==1.10.0
 tzlocal==1.4
 Unidecode==0.4.21
+
+git+https://github.com/benoitc/gunicorn.git
