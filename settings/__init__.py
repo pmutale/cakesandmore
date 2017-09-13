@@ -1,1 +1,1 @@
-from settings.pipelines.environments.development import *
+from settings.pipelines.environments.production import *
