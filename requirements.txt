@@ -18,7 +18,6 @@ easy-thumbnails==2.4.1
 olefile==0.44
 Pillow==4.2.1
 html5lib>=0.90
-pkg-resources==0.0.0
 psycopg2==2.7.3.1
 pytz==2017.2
 six==1.10.0
