@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1",
-    "start": "webpack --config webpack/webpack.config.js --progress",
-    "devserver": ""
+    "start": "webpack --config ./webpack/webpack.config.js --progress --display-error-details",
+    "devserver": "webpack-dev-server --config ./webpack/webpack.local.js --history-api-fallback"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,13 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "reactstrap": "^5.0.0-alpha.3",
     "redux": "^3.7.2",
     "sass-loader": "^6.0.6",
     "scss-loader": "0.0.1",

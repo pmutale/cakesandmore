@@ -2,7 +2,7 @@ from settings.pipelines.environments.base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['cakesandmore.localhost', '127.0.0.1']
 
 DATABASES = {
     'default': {
@@ -14,3 +14,13 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+def show_toolbar(request):
+    return True
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+    "INTERCEPT_REDIRECTS": False,
+}
+
