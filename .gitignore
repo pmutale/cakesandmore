@@ -50,5 +50,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 .idea/
+.vscode/
 /static/
 /media/
+/node_modules/
