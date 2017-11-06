@@ -1,0 +1,53 @@
+{
+  "name": "cakesandmore",
+  "version": "1.0.0",
+  "description": "A new World of baking! Baking with love!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1",
+    "start": "webpack --config webpack/webpack.config.js --progress",
+    "devserver": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmutale/cakesandmore.git"
+  },
+  "author": "P. Mutale, I. Tendo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pmutale/cakesandmore/issues"
+  },
+  "homepage": "https://github.com/pmutale/cakesandmore#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "css-loader": "^0.28.7",
+    "eslint-loader": "^1.9.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "node-sass": "^4.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redux": "^3.7.2",
+    "sass-loader": "^6.0.6",
+    "scss-loader": "0.0.1",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack-merge": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "eslint": "^4.10.0",
+    "eslint-plugin-react": "^7.4.0",
+    "react-hot-loader": "^3.1.1",
+    "webpack": "^3.8.1",
+    "webpack-bundle-tracker": "^0.2.0",
+    "webpack-dev-server": "^2.9.4",
+    "xml-loader": "^1.2.1"
+  }
+}
