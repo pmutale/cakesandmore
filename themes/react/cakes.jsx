@@ -1,39 +1,56 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
 import { Button, Progress, ListGroup, ListGroupItem, ListGroupItemHeading, Collapse, Card, CardBody } from 'reactstrap'
-
+import { postData, getData, showData, progressData } from './datastore/actions'
+import PropTypes from 'prop-types';
+import fetch from 'isomorphic-fetch';
 import Main from './components/mainingredient';
-import Flavour from './components/flavour'
-import Shape from './components/shape'
-import Size from './components/size'
-import Toppings from './components/toppings'
-import Extras from './components/extras'
-
+import Flavour from './components/flavour';
+import Shape from './components/shape';
+import Size from './components/size';
+import Toppings from './components/toppings';
+import Extras from './components/extras';
 
 
 export default class Cakes extends React.Component {
-	constructor(){
-		super();
-		this.toggle = this.toggle.bind(this);
-		this.state = {collapse: false}
+	constructor(props){
+		super(props);
+		this.store = this.props.store
+		this.state = {
+			data: [],
+		}
 	}
-    
-	toggle() {
-		this.setState({collapse: !this.state.collapse})
+	
+	componentDidMount () {
+		const dataUrl = 'http://cakesandmore.localhost:9090/themes/api/2/';
+		fetch(dataUrl).then(
+			function(response) {
+				if (response.status >= 400) {
+					throw new Error('We couldnt get any information, Peter!!!')
+				}
+				return response.json();
+			}).then(response => (this.setState({ data: response }))
+		)
 	}
-    
+
 	render() {
 		return (
 			<div>
-				<Progress value='10'>10%</Progress>
-				<Main className='whatever' buttonLabel='Add Main Ingredient'/>
-				<Flavour/>
-				<Shape/>
-				<Size/>
-				<Toppings/>
-				<Extras/>
+				<Main 
+					store={this.store}
+					className='whatever' 
+					dataLoaded={this.state.data} 
+					buttonLabel='Add Main Ingredient(s)'
+				/>
+				<hr/>
 			</div>
 			
 		);
 	}
+}
+
+
+Cakes.propTypes = {
+	store: PropTypes.object
 }

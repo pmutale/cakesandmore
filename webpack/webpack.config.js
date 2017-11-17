@@ -2,9 +2,22 @@ const merge = require('webpack-merge')
 const common = require('./webpack.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const cssConfig= ExtractTextPlugin.extract({
-	fallback: "style-loader",
-	use: ['css-loader', 'sass-loader']
+const styles_path = '../static/bundles/css/[name].[hash].css';
+const extractSass = new ExtractTextPlugin(styles_path, {
+	allChuncks: true,
+});
+
+const cssConfig = extractSass.extract({
+	use: [
+		{
+			loader: 'css-loader', 
+			options: {sourceMap: true }
+		}, 
+		{ 
+			loader: 'sass-loader', 
+			options: {sourceMap: true}
+		}],
+	fallback: "style-loader"
 });
 
 

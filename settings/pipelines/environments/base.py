@@ -17,7 +17,10 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'cakes', 'templates'),],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'cakes', 'templates'),
+            os.path.join(BASE_DIR, 'themes', 'templates'),
+            ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -41,12 +44,9 @@ TEMPLATES = [
     },
 ]
 
-MIDDLEWARE_CLASSES = [
-
-]
-
 MIDDLEWARE = (
     'cms.middleware.utils.ApphookReloadMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,6 +91,9 @@ INSTALLED_APPS = (
 
     'cakes',
     'webpack_loader',
+    'themes',
+    'debug_toolbar',
+    'rest_framework'
     
 )
 

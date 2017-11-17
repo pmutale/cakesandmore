@@ -8,14 +8,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	context: __dirname,
 
-	entry: [
-		'webpack-dev-server/client?http://cakesandmore.localhost:9090',
-		'webpack/hot/only-dev-server',
-		'../themes/react/app'
-	],
+	entry: {
+		'webpackServer':'webpack-dev-server/client?http://cakesandmore.localhost:9090',
+		'webpackHot': 'webpack/hot/only-dev-server',
+		'main': '../themes/react/app',
+		'styles': '../themes/static/styles.scss'
+	},
 
 	output: {
-		path: path.resolve('../static/bundles/'),
+		path: path.resolve('../static/bundles/js/'),
 		filename: '[name]-[hash].bundle.js',
 		publicPath: '/static/bundles'
 	},

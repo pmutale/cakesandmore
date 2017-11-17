@@ -9,6 +9,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
+import debug_toolbar
 
 admin.autodiscover()
 
@@ -19,6 +20,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),  # NOQA
+    url(r'themes/', include('themes.urls')),
     url(r'^', include('cms.urls')),
 )
 
@@ -28,3 +30,8 @@ if settings.DEBUG:
         url(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         ] + staticfiles_urlpatterns() + urlpatterns
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
+
