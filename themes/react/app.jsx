@@ -3,6 +3,7 @@ import ReactDOM from'react-dom';
 import React from 'react';
 import Redbox from 'redbox-react';
 import Cakes from './cakes';
+import Receipt from './receipt';
 import { AppContainer } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import configureStore from './datastore/configure/configureStore';
@@ -22,7 +23,14 @@ const renderApp = Component => {
 			<Component store={dataStores}/>
 		</AppContainer>,
 		document.getElementById('cakes')
-	)
+	);
+	
+	ReactDOM.render(
+		<AppContainer>
+			<Receipt store={dataStores}/>
+		</AppContainer>,
+		document.getElementById('receipt')
+	);
 }
 
-renderApp(Cakes)
+renderApp(Cakes, Receipt)

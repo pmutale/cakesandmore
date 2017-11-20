@@ -75,5 +75,8 @@ const getData = () => ({
 })
 
 export const fetchingData = (dispatch, getState) => {
-	return dispatch(getData())
+	return fetch('/themes/cake_detail/5').then(response => response.json().then(json => ({
+		type: GET_DATA,
+		cake: json
+	})))
 }

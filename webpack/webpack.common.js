@@ -26,7 +26,7 @@ module.exports = {
 		new webpack.NamedModulesPlugin(),
 		new BundleTracker({filename: 'webpack-stats.json'}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
-		new CleanWebpackPlugin(['./static/bundles/']),
+		new CleanWebpackPlugin(['../static/bundles/']),
 		// new HtmlWebpackPlugin ({
 		// title: 'Output Management'
 		// })

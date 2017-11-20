@@ -11,6 +11,9 @@ import Shape from './components/shape';
 import Size from './components/size';
 import Toppings from './components/toppings';
 import Extras from './components/extras';
+import TopBar from './components/top-bar'
+import styles from '../static/styles'
+
 
 
 export default class Cakes extends React.Component {
@@ -23,7 +26,7 @@ export default class Cakes extends React.Component {
 	}
 	
 	componentDidMount () {
-		const dataUrl = 'http://cakesandmore.localhost:9090/themes/api/2/';
+		const dataUrl = '/themes/cake_detail/5';
 		fetch(dataUrl).then(
 			function(response) {
 				if (response.status >= 400) {

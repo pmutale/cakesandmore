@@ -61,9 +61,16 @@ export default function cakesReducer (state = initialState, action){
 			progress: state.progress + 2,
 			message: 'Progress Updated by Extras'
 		})
-		
-	default:
+
+	case GET_DATA: {
+		const { dataLoaded } = action.cake;
+		return {
+			...dataLoaded
+		}
+	}
+	default: {
 		return state
+	}
 	}
 }
 

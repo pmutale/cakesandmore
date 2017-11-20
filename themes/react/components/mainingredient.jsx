@@ -112,8 +112,7 @@ export default class MainIngredient extends React.Component {
 	render() {
 		const { className, buttonLabel } = this.props
 		const valueMain = this.store.getState().cake['progress'];
-		const valueInPercent = (valueMain /12) * 100
-		console.log(valueMain);
+		const valueInPercent = (valueMain /12) * 100;
 
 		return (
 			<div>

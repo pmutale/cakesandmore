@@ -79,14 +79,15 @@ class Topping(models.Model):
         verbose_name_plural = 'Toppings'
 
 class Cake(models.Model):
+    owner = models.ForeignKey('auth.user', related_name='cake_owner', on_delete=models.CASCADE)
     name = models.CharField(max_length=128, blank=True, null=True)
-    classic_ingredient = models.ManyToManyField(ClassicIngredient, blank=True)
-    fruit_ingredient = models.ManyToManyField(FruitIngredient, blank=True)
-    toppings = models.ManyToManyField(Topping)
-    dimension = models.ManyToManyField(Dimension)
-    custom_dimension = models.ForeignKey(CustomDimension, blank=True, null=True)
-    size = models.ManyToManyField(Size)
-    nut_ingredients = models.ManyToManyField(NutIngredients, blank=True)
+    classic_ingredient = models.ManyToManyField(ClassicIngredient, related_name='classic_ingredient', blank=True)
+    fruit_ingredient = models.ManyToManyField(FruitIngredient, related_name='fruit_ingredient', blank=True)
+    toppings = models.ManyToManyField(Topping, related_name='topping')
+    dimension = models.ManyToManyField(Dimension, related_name='dimensions')
+    custom_dimension = models.ForeignKey(CustomDimension, related_name='custom_dimension', blank=True, null=True)
+    size = models.ManyToManyField(Size, related_name='size'),
+    nut_ingredients = models.ManyToManyField(NutIngredients, related_name='nut_ingredients', blank=True)
 
     def __str__(self):
         return self.name
