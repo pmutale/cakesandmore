@@ -1,0 +1,66 @@
+{% extends "customer/base.html" %}
+
+{% block title %}Setting New password{% endblock %}
+
+{% block title %}
+{% if validlink %}
+  Change password for {{ form.user.username }}
+{% else %}
+  Reset your password
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8 col-sm-10">
+    <div class="card">
+      <div class="card-body">
+        {% if validlink %}
+          <h3 class="card-title">Change password for @{{ form.user.username }}</h3>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success btn-block">Change password</button>
+          </form>
+        {% else %}
+          <h3 class="card-title">Reset your password</h3>
+          <div class="alert alert-danger" role="alert">
+            It looks like you clicked on an invalid password reset link. Please try again.
+          </div>
+          <a href="{% url 'customer:customer_password_reset' %}" class="btn btn-secondary btn-block">Request a new password reset link</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{#    <!-- {% if validlink %}#}
+{#        <p>Please enter your new password twice.<br />#}
+{#           So we can verify you typed it in correctly.</p>#}
+{#        <form action="" method="post">#}
+{#            <div style="display:none">#}
+{#                <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">#}
+{#            </div>#}
+{#            <table>#}
+{#                <tr>#}
+{#                    <td>{{ form.new_password1.errors }}#}
+{#                        <label for="id_new_password1">New password:</label></td>#}
+{#                    <td>{{ form.new_password1 }}</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td>{{ form.new_password2.errors }}#}
+{#                        <label for="id_new_password2">Confirm password:</label></td>#}
+{#                    <td>{{ form.new_password2 }}</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td></td>#}
+{#                    <td><input type="submit" value="Change my password" /></td>#}
+{#                </tr>#}
+{#            </table>#}
+{#        </form>#}
+{#    {% else %}#}
+{#        <h1>Password reset unsuccessful</h1>#}
+{#        <p>The password reset link was invalid, <br />#}
+{#        possibly because it has already been used. <br />#}
+{#        Please request a new password reset.</p>#}
+{#    {% endif %} -->#}

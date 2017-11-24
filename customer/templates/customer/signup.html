@@ -1,0 +1,88 @@
+{% extends 'customer/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <span class="alert alert-info"> {{ user.first_name }}, You are already logged in.</span>
+  <span class="alert alert-info"><a href="">Log Out?</a> </span>
+{% else %}
+  <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div class="card">
+              <div class="card-header">
+                  <a href="{% url 'customer:customer-login' %}">CakesAndMore:</a> <span class="float-right">Signup for a new Account</span>
+              </div>
+            <div class="card-body">
+              <h3 class="card-title">Sign up</h3>
+              {% if form.errors %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>{% trans "You must fill in all fields to proceed. Please try again." %}</strong>
+              </div>
+              {% endif %}
+
+              {% if next %}
+              {% if user.is_authenticated %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      <strong>Holy guacamole!</strong>
+                      {% trans "Your account doesn't have access to this page. To proceed please login with an account that has access." %}.
+                  </div>
+              {% else %}
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      <strong>{% trans 'Please login to see this page.' %}</strong>
+                  </div>
+              {% endif %}
+              {% endif %}
+              <form method="post" novalidate>
+                  {% csrf_token %}
+                  {% for field in form %}
+                      <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-8">
+                            {% for error in field.errors %}
+                            <p class="text text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="{{ field.id_for_label }}" class="col-sm-4 col-form-label">{{ field.label }}</label>
+                          <div class="col-sm-8">
+                              <input autofocus id="{{ field.id_for_label }}" 
+                                      name="{{ field.name }}" 
+                                      type="{% if field.name == 'password1' or field.name == 'password2' %}password{% else %}text{% endif %}" 
+                                      required class="form-control">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4"></div>
+                          <div class="col-sm-8">
+                              {% if field.help_text %}
+                              <small class="text text-primary"">{{ field.help_text }}</small>
+                              {% endif %}
+                          </div>
+                        </div>
+                  {% endfor %}
+                  <div class="spacer"></div>
+                </p>
+                <button type="submit" class="btn btn-primary btn-block">Create an account</button>
+              </form>
+            </div>
+            <div class="card-footer text-muted text-center">
+              Already have an account? <a href="{% url 'customer:customer-login'%}">Log in</a>
+            </div>
+          </div>
+          </div>
+          </div>
+    </div>
+{% endif %}
+{% endblock %}
