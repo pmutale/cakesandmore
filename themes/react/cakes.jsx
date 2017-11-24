@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import { Button, Progress, ListGroup, ListGroupItem, ListGroupItemHeading, Collapse, Card, CardBody } from 'reactstrap'
-import { postData, getData, showData, progressData } from './datastore/actions'
+import { fetchingData } from './datastore/actions'
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 import Main from './components/mainingredient';
@@ -26,15 +26,7 @@ export default class Cakes extends React.Component {
 	}
 	
 	componentDidMount () {
-		const dataUrl = '/themes/cake_detail/5';
-		fetch(dataUrl).then(
-			function(response) {
-				if (response.status >= 400) {
-					throw new Error('We couldnt get any information, Peter!!!')
-				}
-				return response.json();
-			}).then(response => (this.setState({ data: response }))
-		)
+		this.store.dispatch(fetchingData).then(response => (this.setState({data:response})))
 	}
 
 	render() {

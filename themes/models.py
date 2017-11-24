@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.conf import settings
 from django.db import models
 
 
@@ -79,7 +79,7 @@ class Topping(models.Model):
         verbose_name_plural = 'Toppings'
 
 class Cake(models.Model):
-    owner = models.ForeignKey('auth.user', related_name='cake_owner', on_delete=models.CASCADE)
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='cake_owner', on_delete=models.CASCADE)
     name = models.CharField(max_length=128, blank=True, null=True)
     classic_ingredient = models.ManyToManyField(ClassicIngredient, related_name='classic_ingredient', blank=True)
     fruit_ingredient = models.ManyToManyField(FruitIngredient, related_name='fruit_ingredient', blank=True)
@@ -90,7 +90,7 @@ class Cake(models.Model):
     nut_ingredients = models.ManyToManyField(NutIngredients, related_name='nut_ingredients', blank=True)
 
     def __str__(self):
-        return self.name
+        return '{} - {}'.format(self.owner, self.name)
 
     class Meta:
         verbose_name = 'Cake'

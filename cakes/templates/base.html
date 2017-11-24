@@ -6,56 +6,57 @@
         <meta charset="utf-8">
         <title>{% block title %}This is my new project home page{% endblock title %}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         
-        {% render_block "css" %}
+        <!-- {% render_block "css" %} -->
         {% addtoblock 'css' %}
             {% render_bundle 'main' 'css' %}
         {% endaddtoblock %}
     </head>
     <body>
-        {% cms_toolbar %}
+            <!-- {% cms_toolbar %} -->
         <div class="container">
-            <div id="navbar" class="navbar">
-                <div class="top-bar white">
-                    <div class="pull-left">Welcome to CakeGirls</div>
-                    <div class="pull-right">
-                        <div class="login">
-                            <a href="#">
-                                <i class="ion-android-person"></i>
-                                <span>My CakeGirls</span>
-                            </a>
-                        </div>  
+            <div id="navbar" class="">
+                <div class="d-flex justify-content-between">
+                    <div class="mr-auto p-2">Welcome to CakeGirls</div>
+                    <div class="p-2">
+                            {% if user.is_authenticated %} 
+                                    <a href="{% url 'customer:customer-profile' %}">
+                                        <i class="ion-android-person"></i>
+                                        <span>Welcome, {{ user.first_name }}</span>
+                                    </a>
+                                    <span class="separator">|</span>
+                                    
+                                    <a class="text text-danger" href="{% url 'customer:customer-logout' %}"><i class='ion-log-out'></i> Log Out</a>
+                            {% else %}
+                                <a href="#">
+                                    <i class="ion-android-person"></i>
+                                    <span>My CakeGirls</span>
+                                </a>
+                            {% endif %}
+                    </div> 
+                    <div class="p-2">
                         <span class="separator">|</span>
-                        <div class="shopping-cart">
                             <a href="#">
                                 <i class="ion-android-cart">
                                 </i>
                                 <span>Shopping Cart</span>
                             </a>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="col-sm-8">
-                <div id="cakes"></div>
-            </div>
-            <div class="col-sm-4">
-                <div>
-                    <h3>{% trans "Your Custom Cake" %}</h3>
-                </div>
-                <div id="receipt"></div>
-            </div>
-        </div>
-      
             {% block content %}
+                    
             {% endblock content %}
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         {% render_block "js" %}
         {% addtoblock 'js' %}
             {% render_bundle 'main' 'js' %}

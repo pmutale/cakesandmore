@@ -17,10 +17,7 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'cakes', 'templates'),
-            os.path.join(BASE_DIR, 'themes', 'templates'),
-            ],
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -32,6 +29,8 @@ TEMPLATES = [
                 'django.template.context_processors.csrf',
                 'django.template.context_processors.tz',
                 'sekizai.context_processors.sekizai',
+                # 'sekizai.context.SekizaiContext',
+                'django.template.RequestContext',
                 'django.template.context_processors.static',
                 'cms.context_processors.cms_settings'
             ],
@@ -71,6 +70,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
 
+    'customer',
     'cms',
     'menus',
     'sekizai',
@@ -93,9 +93,17 @@ INSTALLED_APPS = (
     'webpack_loader',
     'themes',
     'debug_toolbar',
-    'rest_framework'
+    'rest_framework',
     
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = '/customer/profile/'
+
+LOGIN_URL = '/customer/login/'
+
+LOGOUT_REDIRECT_URL = '/'
 
 LANGUAGES = (
     ## Customize this
@@ -180,6 +188,8 @@ LOGGING = {
         },
     },
 }
+
+AUTH_USER_MODEL = 'customer.User'
 
 WEBPACK_LOADER = {
     'DEFAULT': {

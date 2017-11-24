@@ -21,7 +21,8 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'themes/', include('themes.urls', namespace='themes')),
-    url(r'auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'customer/', include('customer.urls', namespace='customer')),
+    # url(r'auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include('cms.urls')),
 )
 

@@ -5,6 +5,7 @@ from .models import *
 from django.contrib.auth.models import User
 from .serializers import CakeSerializer, UserSerializer
 from rest_framework import mixins, generics, permissions, serializers
+from django.contrib.auth import get_user_model
 class CakeListView(generics.ListCreateAPIView):
     queryset = Cake.objects.all()
     serializer_class = CakeSerializer
@@ -21,11 +22,17 @@ class CakeDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     
 class UserListView(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model()
     serializer_class = UserSerializer
     
 
 class UserDetailView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model()
     serializer_class = UserSerializer
     
+
+def create_cake_receipt(request):
+    context = {
+
+    }
+    return render(request, 'themes/cakes.html', context)

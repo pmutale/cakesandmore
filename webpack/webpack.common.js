@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+// const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
 	context: __dirname,
@@ -22,6 +22,7 @@ module.exports = {
 	},
 
 	plugins: [
+		// new DashboardPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 		new BundleTracker({filename: 'webpack-stats.json'}),
