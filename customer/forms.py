@@ -7,8 +7,7 @@ import datetime
 
 
 class SignUpForm(UserCreationForm):
-    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD',
-                                widget = forms.SelectDateWidget(), initial=datetime.date.today)
+    birth_date = forms.DateField(widget = forms.SelectDateWidget())
 
     class Meta:
         model = get_user_model()

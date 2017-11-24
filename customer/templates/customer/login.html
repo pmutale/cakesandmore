@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
-<div class="card">
+<div class="card bg-light mb-3">
     <div class="card-header">
         <a href="{% url 'customer:customer-login' %}">CakesAndMore:</a> <span class="float-right">Login in to Your Account</span>
     </div>
@@ -38,7 +38,7 @@
                     {% endif %}
                 {% endif %}
 
-                <form method="post" action="{% url 'customer:customer-login' %}">
+                <form method="post" action="{% url 'customer:customer-login' %}" novalidate>
                     {% csrf_token %}
                     {% for field in form %}
                         <div class="form-group row">

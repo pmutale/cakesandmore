@@ -1,19 +1,8 @@
 
-{% extends 'customer/base.html' %}
-
-{% load static i18n sekizai_tags %}
-
-{% block content %}
-{% if user.is_authenticated %}
-  <span class="alert alert-info"> {{ user.first_name }}, You are already logged in.</span>
-  <span class="alert alert-info"><a href="">Log Out?</a> </span>
-{% else %}
 {% autoescape off %}
 Hi {{ user.username }},
 
 Please click on the link below to confirm your registration:
 
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+http://{{ domain }}{% url 'customer:customer_activate' uidb64=uid token=token %}
 {% endautoescape %}
-{% endif %}
-{% endblock %}

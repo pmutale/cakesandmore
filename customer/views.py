@@ -55,8 +55,7 @@ def customer_signup(request):
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(subject, message, to=[to_email])
             email.send()
-            return redirect('customer_activation_sent')
-            # return HttpResponse('Please confirm your email address to complete the registration')
+            return redirect('customer:customer_activation_sent')
     else:
         form = SignUpForm()
     return render(request, 'customer/signup.html', {'form': form})
@@ -64,7 +63,6 @@ def customer_signup(request):
 
 def customer_logout(request):
     """
-
     :param request:
     """
     logout(request)
@@ -95,10 +93,11 @@ def activate(request, uidb64, token):
         user = None
 
     if customer is not None and account_activation_token.check_token(customer, token):
-        user.is_active = True
-        user.customer_profile.email_confirmed = True
-        user.save()
+        customer.is_active = True
+        customer.save()
+        customer.userprofile.email_confirmed = True
+        customer.userprofile.save()
         login(request, customer)
-        return redirect('customer_profile')
+        return redirect('customer:customer-profile')
     else:
         return render(request, 'customer/activation/invalid.html')

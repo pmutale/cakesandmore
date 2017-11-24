@@ -1,4 +1,5 @@
 from settings.core import *
+from cakes.secrets import read_mailpass
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -22,15 +23,13 @@ TEMPLATES = [
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.media',
                 'django.template.context_processors.csrf',
                 'django.template.context_processors.tz',
-                'sekizai.context_processors.sekizai',
-                # 'sekizai.context.SekizaiContext',
-                'django.template.RequestContext',
                 'django.template.context_processors.static',
                 'cms.context_processors.cms_settings'
             ],
@@ -197,3 +196,17 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+DEFAULT_FROM_EMAIL = 'webmaster@mutale.nl'
+
+email_settings = read_mailpass('webmaster@mutale.nl')
+
+EMAIL_HOST = email_settings['host']
+
+EMAIL_PORT = email_settings['port']
+
+EMAIL_HOST_USER = email_settings['user']
+
+EMAIL_HOST_PASSWORD = email_settings['password']
+
+EMAIL_USE_SSL = email_settings['ssl']

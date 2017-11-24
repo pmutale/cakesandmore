@@ -1,7 +1,5 @@
 {% extends "customer/base.html" %}
 
-{% block title %}Setting New password{% endblock %}
-
 {% block title %}
 {% if validlink %}
   Change password for {{ form.user.username }}
@@ -14,12 +12,38 @@
 <div class="row justify-content-center">
   <div class="col-lg-6 col-md-8 col-sm-10">
     <div class="card">
+      <div class="card-header">Change password for <span><i class="ion-android-person"></i></span> {{ form.user.username }}</div>
       <div class="card-body">
         {% if validlink %}
-          <h3 class="card-title">Change password for @{{ form.user.username }}</h3>
           <form method="post" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for field in form %}
+                  <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-12">
+                        {% for error in field.errors %}
+                        <p class="text text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label">{{ field.label }}</label>
+                      <div class="col-sm-12">
+                          <input autofocus id="{{ field.id_for_label }}" 
+                                  name="{{ field.name }}" 
+                                  type="password"
+                                  required class="form-control">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-12">
+                          {% if field.help_text %}
+                          <small class="text text-primary"">{{ field.help_text }}</small>
+                          {% endif %}
+                      </div>
+                    </div>
+              {% endfor %}
             <button type="submit" class="btn btn-success btn-block">Change password</button>
           </form>
         {% else %}
@@ -34,33 +58,3 @@
   </div>
 </div>
 {% endblock %}
-{#    <!-- {% if validlink %}#}
-{#        <p>Please enter your new password twice.<br />#}
-{#           So we can verify you typed it in correctly.</p>#}
-{#        <form action="" method="post">#}
-{#            <div style="display:none">#}
-{#                <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">#}
-{#            </div>#}
-{#            <table>#}
-{#                <tr>#}
-{#                    <td>{{ form.new_password1.errors }}#}
-{#                        <label for="id_new_password1">New password:</label></td>#}
-{#                    <td>{{ form.new_password1 }}</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <td>{{ form.new_password2.errors }}#}
-{#                        <label for="id_new_password2">Confirm password:</label></td>#}
-{#                    <td>{{ form.new_password2 }}</td>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <td></td>#}
-{#                    <td><input type="submit" value="Change my password" /></td>#}
-{#                </tr>#}
-{#            </table>#}
-{#        </form>#}
-{#    {% else %}#}
-{#        <h1>Password reset unsuccessful</h1>#}
-{#        <p>The password reset link was invalid, <br />#}
-{#        possibly because it has already been used. <br />#}
-{#        Please request a new password reset.</p>#}
-{#    {% endif %} -->#}
