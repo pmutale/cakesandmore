@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const DashboardPlugin = require('webpack-dashboard/plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
 	context: __dirname,
@@ -11,27 +11,22 @@ module.exports = {
 	entry: {
 		'webpackServer':'webpack-dev-server/client?http://cakesandmore.localhost:9090',
 		'webpackHot': 'webpack/hot/only-dev-server',
-		'main': '../themes/react/app',
-		'styles': '../themes/static/styles.scss'
+		'themes': '../themes/react/app',
+		'customer': '../customer/react/app',
 	},
 
 	output: {
-		path: path.resolve('../static/bundles/js/'),
-		filename: '[name]-[hash].bundle.js',
-		publicPath: '/static/bundles'
+		path: path.resolve('../static/bundles/'),
+		filename: 'js/[name]-[hash].bundle.js',
+		publicPath: '/static/bundles/'
 	},
 
 	plugins: [
-		// new DashboardPlugin(),
+		new DashboardPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
-		new BundleTracker({filename: 'webpack-stats.json'}),
-		new webpack.optimize.OccurrenceOrderPlugin(),
-		new CleanWebpackPlugin(['../static/bundles/']),
-		// new HtmlWebpackPlugin ({
-		// title: 'Output Management'
-		// })
-		
+		new BundleTracker({filename: './webpack-stats.json'}),
+		new webpack.optimize.OccurrenceOrderPlugin()
 	],
 
 	externals: [
@@ -80,19 +75,6 @@ module.exports = {
 					query: '[name].[ext]'
 				}]
 			},
-			// {
-				// test: /\.scss$/,
-				// use: [{
-				// 	loader: 'style-loader',
-				// },
-				// {
-				// 	loader: 'sass-loader'
-				// },
-				// {
-				// 	loader: 'css-loader'
-				// }
-				// ]
-			// }
 		]
 	},
 

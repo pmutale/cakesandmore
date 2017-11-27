@@ -2,13 +2,12 @@
 const path = require('path');
 const config = require('./webpack.config');
 const merge = require('webpack-merge');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const styles_path = path.resolve('../static/bundles/css/[name].[hash].css');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const extractSass = new ExtractTextPlugin(styles_path, {
-    allChuncks: true
+	allChuncks: true
 });
 
 
@@ -28,11 +27,10 @@ module.exports = merge(config, {
     
 	plugins: [
 		extractSass,
-		new CleanWebpackPlugin(['../static/bundles/']),
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify('development')
 			}
 		})
 	]
-} )
+} );

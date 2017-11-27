@@ -2,10 +2,12 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
-const styles_path = '../static/bundles/css/[name].[hash].css';
+const styles_path = 'css/[name].[hash].css';
 const extractSass = new ExtractTextPlugin(styles_path, {
-	allChuncks: true,
+	allChuncks: true
 });
 
 const cssConfig = extractSass.extract({
@@ -40,10 +42,10 @@ module.exports = merge(common, {
 	},
 
 	plugins: [
+		new CleanWebpackPlugin(path.join(__dirname, '../static/bundles/'), {
+			root: __dirname
+		}),
 		new DashboardPlugin({ port: 9000 }),
-		new ExtractTextPlugin({
-			filename: '[name].[contenthash].bundle.css',
-			allChunks: true
-		})
+		extractSass
 	]
-})
+});

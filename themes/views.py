@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from .serializers import CakeSerializer, UserSerializer
 from rest_framework import mixins, generics, permissions, serializers
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+
 class CakeListView(generics.ListCreateAPIView):
     queryset = Cake.objects.all()
     serializer_class = CakeSerializer
@@ -30,7 +32,7 @@ class UserDetailView(generics.ListCreateAPIView):
     queryset = get_user_model()
     serializer_class = UserSerializer
     
-
+@login_required
 def create_cake_receipt(request):
     context = {
 

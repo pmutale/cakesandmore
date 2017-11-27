@@ -11,7 +11,11 @@ from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-
+from django.core import serializers
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import User
+from .models import User, UserProfile
+import json
 
 @login_required
 def customer_profile(request):
@@ -20,9 +24,17 @@ def customer_profile(request):
     :param request:
     :return:
     """
-    return render(request, 'customer/customer_profile.html')
+    return render(request, 'customer/customer_profile.html', {})
 
-
+def customer_json_profile(request):
+    if request.user.is_active:
+        user_pk = request.user.id
+        user = UserProfile.objects.filter(pk=user_pk).select_related('user').first()
+        data = serializers.serialize('json', [user, ])
+        structure = json.loads(data)
+        data = json.dumps(structure[0])
+        return HttpResponse(data, content_type='application/json')
+    
 def customer_signup(request):
     """
     User sign Up view

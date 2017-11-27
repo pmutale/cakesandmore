@@ -9,9 +9,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'cakes', 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static', 'bundles'),
+#     'home/pm/private/cakesandmore/static/bundles/'
+# )
 SITE_ID = 1
 
 
@@ -52,10 +53,11 @@ MIDDLEWARE = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cakes.middleware.SessionIdleTimeout',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -210,3 +212,15 @@ EMAIL_HOST_USER = email_settings['user']
 EMAIL_HOST_PASSWORD = email_settings['password']
 
 EMAIL_USE_SSL = email_settings['ssl']
+
+TIME = 5*60
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_COOKIE_AGE = TIME
+
+SESSION_IDLE_TIMEOUT = TIME
+
+SESSION_SAVE_EVERY_REQUEST = True

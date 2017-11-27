@@ -2,6 +2,8 @@ from django.conf.urls import url
 from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
+app_name = 'themes'
+
 urlpatterns = [
     url(r'^make_own_recept/$', views.create_cake_receipt, name='own_recept'),
     url(r'^cake_list/$', views.CakeListView.as_view(), name='cake_list'),

@@ -8,6 +8,7 @@ app_name = 'customer'
 urlpatterns = [
     url(r'^signup/$', views.customer_signup, name='customer-signup'),
     url(r'^profile/$', views.customer_profile, name='customer-profile'),
+    url(r'^profiledata/$', views.customer_json_profile, name='customer-profile-data'),
 
     url(r'^logout/$', customer_views.LogoutView.as_view(), {'next_page': 'customer:customer-login'}, name='customer-logout'),
     url(r'^login/$', customer_views.login, {'template_name': 'customer/login.html'}, name='customer-login'),
