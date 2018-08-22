@@ -1,2 +1,5 @@
 # CakesAndMore
-React => Django => Python => API
+React combination with Python - Django API
+- [x] Python API 
+- [x] React Front End
+- [x] Django Framework
