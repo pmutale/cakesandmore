@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static i18n sekizai_tags cms_tags %}
+
+{% block navbar %}
+    <a href="#">Projects</a>
+    <hr>
+{% endblock %}
+
+{% block title %}Customer Account {% endblock %}
+{% block content %}
+<ol class="breadcrumb my-4">
+        {% block breadcrumb %}
+        {% endblock %}
+      </ol>
+    
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'customer/base.html' %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+          <div class="card bg-light mb-3">
+            <div class="card-header">Reset your password</div>
+            <div class="card-body">
+              <p>Enter your email address and we will send you a link to reset your password.</p>
+              <form method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-12">
+                      {% for error in field.errors %}
+                      <p class="text text-danger">{{ error }}</p>
+                      {% endfor %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label">{{ field.label }}</label>
+                    <div class="col-sm-12">
+                        <input autofocus id="{{ field.id_for_label }}" 
+                                name="{{ field.name }}" 
+                                required class="form-control">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-12">
+                        {% if field.help_text %}
+                        <small class="text text-primary"">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                  </div>
+            {% endfor %}
+                <button type="submit" class="btn btn-primary btn-block">Send password reset email</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+

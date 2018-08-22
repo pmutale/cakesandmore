@@ -1,0 +1,9 @@
+{
+    "plugins": [
+        "react-hot-loader/patch"
+
+    ],
+    "presets": [
+        "es2016", "react", "stage-2"
+    ]
+}
