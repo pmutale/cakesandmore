@@ -12,7 +12,7 @@ import Size from './components/size';
 import Toppings from './components/toppings';
 import Extras from './components/extras';
 import TopBar from './components/top-bar'
-import styles from '../static/styles'
+// import styles from '../static/styles'
 
 
 
@@ -24,7 +24,7 @@ export default class Cakes extends React.Component {
 			data: [],
 		}
 	}
-	
+
 	componentDidMount () {
 		this.store.dispatch(fetchingData).then(response => (this.setState({data:response})))
 	}
@@ -32,15 +32,15 @@ export default class Cakes extends React.Component {
 	render() {
 		return (
 			<div>
-				<Main 
+				<Main
 					store={this.store}
-					className='whatever' 
-					dataLoaded={this.state.data} 
+					className='whatever'
+					dataLoaded={this.state.data}
 					buttonLabel='Add Main Ingredient(s)'
 				/>
 				<hr/>
 			</div>
-			
+
 		);
 	}
 }

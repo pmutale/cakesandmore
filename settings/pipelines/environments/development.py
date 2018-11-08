@@ -2,7 +2,7 @@ from settings.pipelines.environments.base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['cakesandmore.localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {

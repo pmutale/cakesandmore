@@ -14,17 +14,17 @@ const extractSass = new ExtractTextPlugin(styles_path, {
 
 module.exports = merge(config, {
 	// devtool: 'source-map',
-        
+
 	devServer: {
 		hot: true,
 		inline: true,
 		port: 9090,
-		host:"cakesandmore.localhost",
+		// host:"cakesandmore.localhost",
 		proxy: {
 			'**': 'http://localhost:9000'
 		}
 	},
-    
+
 	plugins: [
 		extractSass,
 		new webpack.DefinePlugin({

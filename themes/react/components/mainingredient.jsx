@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, FormGroup, Label, Input, Collapse, Card, CardBody, Progress, Row, Col, Container, Grid} from 'reactstrap'
 import PropTypes from 'prop-types';
 import * as types from '../datastore/actions/index'
-import styles from '../../static/styles'
+// import styles from '../../static/styles'
 
 export default class MainIngredient extends React.Component {
 	constructor(props){
@@ -44,7 +44,7 @@ export default class MainIngredient extends React.Component {
 		this.handleExtrasProgress = this.handleExtrasProgress.bind(this);
 		this.doubleExtrasTrouble = this.doubleExtrasTrouble.bind(this);
 	}
-	
+
 
 	toggleMain() {
 		this.setState({
@@ -131,17 +131,17 @@ export default class MainIngredient extends React.Component {
 	}
 
 	doubleSizeTrouble () {
-		this.toggleSize(); 
+		this.toggleSize();
 		this.store.dispatch(types.manageProgressSizeEdit);
 	}
-	
+
 	doubleToppingsTrouble () {
-		this.toggleToppings(); 
+		this.toggleToppings();
 		this.store.dispatch(types.manageProgressToppingsEdit);
 	}
 
 	doubleExtrasTrouble () {
-		this.toggleExtras(); 
+		this.toggleExtras();
 		this.store.dispatch(types.manageProgressExtrasEdit);
 	}
 
@@ -166,7 +166,7 @@ export default class MainIngredient extends React.Component {
 
 		const extrasIsUpdated = this.store.getState().cake['progressExtrasIsUpdated'];
 		const extrasIsBeingUpdated = this.store.getState().cake['progressExtrasIsBeingUpdated'];
-		
+
 		const valueInPercent = (valueMain /12) * 100;
 
 		return (
@@ -176,13 +176,13 @@ export default class MainIngredient extends React.Component {
 						{ valueInPercent.toFixed('0') + '%' }
 					</Progress>
 					<hr/>
-					{ 
-						!mainIsEditing === !mainIsUpdated ? 
-							<Button 
-								color={!mainIsEditing ? 'primary' : 'success'} 
-								onClick={this.toggleMain}>{this.props.buttonLabel}</Button> : 
+					{
+						!mainIsEditing === !mainIsUpdated ?
+							<Button
+								color={!mainIsEditing ? 'primary' : 'success'}
+								onClick={this.toggleMain}>{this.props.buttonLabel}</Button> :
 							!mainIsEditing && mainIsUpdated ?
-								<Button color='info' onClick={this.doubleMainTrouble}>Edit Main Ingredients</Button> : 
+								<Button color='info' onClick={this.doubleMainTrouble}>Edit Main Ingredients</Button> :
 								<Button color='warning' onClick={this.toggleMain}>
 									Edit Main Ingredients
 								</Button>
@@ -193,12 +193,12 @@ export default class MainIngredient extends React.Component {
 							<Input type='checkbox'/> { 'I am a potatoes' }
 							<Row>
 								<Col xs={12} md={8}>
-									{ !mainIsUpdated ? 
-										<Button size='sm' 
-											color='primary' 
+									{ !mainIsUpdated ?
+										<Button size='sm'
+											color='primary'
 											onClick={ this.handleMainProgress }>
 											Add to Recept
-										</Button> :  
+										</Button> :
 										<Button color='link'>Save Changes to Main Ingredients</Button> }
 								</Col>
 								<Col xs={6} md={4}>
@@ -210,11 +210,11 @@ export default class MainIngredient extends React.Component {
 				</div>
 
 				<hr/>
-				
+
 				<div>
 					{
 						!flavourIsBeingUpdated === !flavourIsUpdated ?
-							<Button 
+							<Button
 								color={!flavourIsBeingUpdated ? 'primary' : 'success'}
 								onClick={this.toggleFlavour}>Add a Flavour</Button> :
 							!flavourIsBeingUpdated && flavourIsUpdated ?
@@ -241,14 +241,14 @@ export default class MainIngredient extends React.Component {
 					</Collapse>
 				</div>
 				<hr/>
-				
+
 				<div>
 					{
 						!shapeIsBeingUpdated === !shapeIsUpdated ?
-							<Button 
-								color={!shapeIsBeingUpdated ? 'primary' : 'success'} 
+							<Button
+								color={!shapeIsBeingUpdated ? 'primary' : 'success'}
 								onClick={this.toggleShape}>Add a Shape</Button> :
-							!shapeIsBeingUpdated && shapeIsUpdated ? 
+							!shapeIsBeingUpdated && shapeIsUpdated ?
 								<Button color='info' onClick={this.doubleShapeTrouble}>Edit Shape</Button> :
 								<Button color='warning' onClick={this.toggleShape}>Edit Shape</Button>
 					}
@@ -271,13 +271,13 @@ export default class MainIngredient extends React.Component {
 					</Collapse>
 				</div>
 				<hr/>
-				
+
 				<div>
 					{
 						!sizeIsBeingUpdated === !sizeIsUpdated ?
-							<Button 
-								color={!sizeIsBeingUpdated ? 'primary' : 'success'} 
-								onClick={this.toggleSize}> Add a Size </Button> : 
+							<Button
+								color={!sizeIsBeingUpdated ? 'primary' : 'success'}
+								onClick={this.toggleSize}> Add a Size </Button> :
 							!sizeIsBeingUpdated && sizeIsUpdated ?
 								<Button color='info' onClick={this.doubleSizeTrouble}>Edit Size</Button>:
 								<Button color='warning' onClick={this.toggleSize}>Edit Size</Button>
@@ -301,12 +301,12 @@ export default class MainIngredient extends React.Component {
 					</Collapse>
 				</div>
 				<hr/>
-				
+
 				<div>
 					{
 						!toppingsIsBeingUpdated === !toppingsIsUpdated ?
-							<Button 
-								color={!toppingsIsBeingUpdated ? 'primary' : 'success'}  
+							<Button
+								color={!toppingsIsBeingUpdated ? 'primary' : 'success'}
 								onClick={this.toggleToppings}>Add a Topping</Button> :
 							!toppingsIsBeingUpdated && toppingsIsUpdated ?
 								<Button color='info' onClick={this.doubleToppingsTrouble}>Edit Toppings</Button>:
@@ -331,12 +331,12 @@ export default class MainIngredient extends React.Component {
 					</Collapse>
 				</div>
 				<hr/>
-				
-				<div> 
+
+				<div>
 					{
 						!extrasIsBeingUpdated === !extrasIsUpdated ?
-							<Button 
-								color={!extrasIsBeingUpdated ? 'primary' : 'success'} 
+							<Button
+								color={!extrasIsBeingUpdated ? 'primary' : 'success'}
 								onClick={this.toggleExtras}>Add a Extras</Button> :
 							!extrasIsBeingUpdated && extrasIsUpdated ?
 								<Button color='info' onClick={this.doubleExtrasTrouble}>Edit Extras</Button>:
