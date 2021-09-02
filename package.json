@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/pmutale/cakesandmore#readme",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-core": "^6.26.3",
     "css-loader": "^0.28.11",
     "es6-promise": "^4.2.5",
