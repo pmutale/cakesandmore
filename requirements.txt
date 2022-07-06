@@ -24,7 +24,7 @@ djangocms-style==2.0.2
 djangocms-text-ckeditor==3.5.0
 djangorestframework==3.7.3
 easy-thumbnails==2.4.1
-html5lib==0.9999999
+html5lib==0.999999999
 olefile==0.44
 Pillow==4.2.1
 psycopg2==2.7.3.1
