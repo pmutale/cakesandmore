@@ -22,7 +22,7 @@ djangocms-link==2.1.2
 djangocms-snippet==1.9.2
 djangocms-style==2.0.2
 djangocms-text-ckeditor==3.5.0
-djangorestframework==3.7.3
+djangorestframework==3.15.2
 easy-thumbnails==2.4.1
 html5lib==0.9999999
 olefile==0.44
